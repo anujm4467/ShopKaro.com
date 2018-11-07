@@ -1,28 +1,25 @@
 /** @format */
 
+// Redux -root
+// library 
 import {createStore} from 'redux';
 
-const defaultreducer = [];
+//Reducers ------
+//root reducer 
+import reducer from './reducers/indexReducer';
 
-const reducer = (state = defaultreducer, action) => {
-  switch (action.type) {
-    case 'POST_BOOK':
-      let books = state.concat(action.payload);
-      return books;
-    case 'DECREMENT_TYPE':
-      return state - action.payload;
+// Cart Action 
+import addtoCart from './actions/cartAction';
 
-    default:
-      return state;
-  }
-};
-
+//Store which store the root reduce 
 const store = createStore(reducer);
 
+// to get every action info
 store.subscribe(() => {
   console.log('State', store.getState());
 });
 
+// giving the data to reducer  
 store.dispatch({
   type: 'POST_BOOK',
   payload: [
@@ -30,8 +27,14 @@ store.dispatch({
     {id: 2, title: 'anuj Mish', description: 'this is anuj mish', price: '20$'},
   ],
 });
+
 store.dispatch({
   type: 'POST_BOOK',
-  payload: {id: 2, title: 'anuj Mish', description: 'this is anuj mish', price: '20$'},
+  payload: [{id: 3, title: 'anuj Mish', description: 'this is anuj mish', price: '20$'}],
 });
-// store.dispatch({type: 'DECREMENT_TYPE', payload: 1});
+
+store.dispatch({type: 'DELETE_BOOK', payload: {id: 2}});
+
+store.dispatch({type: 'UPDATE_BOOK', payload: {id: 3, title: 'Anuj Mishra'}});
+
+store.dispatch(addtoCart([{id: 1}]));

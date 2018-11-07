@@ -2,7 +2,7 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Reduc from './Redux';
+import Reducx from './Redux';
 
 const Index = () => {
   return (
