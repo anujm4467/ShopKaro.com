@@ -2,7 +2,14 @@
 
 //PATH- ACTION/BOOKACTION
 
-//ACTION - POST_BOOK , DELETE_BOOK , UPDATE_BOOK
+//ACTION - POST_BOOK , DELETE_BOOK , UPDATE_BOOK. GET_BOOK
+
+
+export function getBook(){
+    return {
+      type : 'GET_BOOK'
+    }
+}
 
 export function postBook(book) {
   return {

@@ -2,12 +2,30 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Reducx from './Redux';
+import {applyMiddleware, createStore} from 'redux';
+import BookList from './components/pages/BookList';
+import {Provider} from 'react-redux';
+import reducer from './reducers/indexReducer';
+import logger from 'redux-logger';
+
+//book action
+// import {postBook} from './actions/bookAction';
+const middleware = applyMiddleware(logger);
+
+//Store which store the root reduce
+const store = createStore(reducer, middleware);
+
+// giving the data to reducer
+// store.dispatch(
+//   postBook(),
+// );
 
 const Index = () => {
   return (
     <div>
-      <h1>hii</h1>
+      <Provider store={store}>
+        <BookList />
+      </Provider>
     </div>
   );
 };
